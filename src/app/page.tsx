@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Mic2, Zap, Megaphone, Disc3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,46 +9,39 @@ import {
   CardContent,
 } from "@/components/ui/card";
 
+const categories = [
+  { title: "Singers", desc: "Find vocal talents for any genre.", icon: Mic2 },
+  { title: "Dancers", desc: "Energetic performers for your stage.", icon: Zap },
+  { title: "Speakers", desc: "Engaging voices for conferences.", icon: Megaphone },
+  { title: "DJs", desc: "Keep the party going all night.", icon: Disc3 },
+];
+
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen font-[family-name:var(--font-geist-sans)]">
-      <header className="py-4 px-8 flex justify-between items-center border-b">
-        <h1 className="text-xl font-bold">Artist Manager</h1>
-        <nav className="flex gap-4 text-sm">
-          <Link href="/" className="hover:underline">Home</Link>
-          <Link href="/artists" className="hover:underline">Artists</Link>
-          <Link href="/about" className="hover:underline">About</Link>
-        </nav>
-      </header>
-
-      <main className="flex-grow">
-        <section className="text-center py-16 px-8">
-          <h2 className="text-4xl font-bold mb-4">Discover and book amazing talent</h2>
-          <p className="max-w-xl mx-auto mb-6">
-            Manage your favorite performers and connect with artists for your next event.
-          </p>
-          <Button asChild>
-            <Link href="/artists">Explore Artists</Link>
-          </Button>
-        </section>
-
-        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-8 pb-16">
-          {[
-            { title: "Singers", desc: "Find vocal talents for any genre." },
-            { title: "Dancers", desc: "Energetic performers for your stage." },
-            { title: "Speakers", desc: "Engaging voices for conferences." },
-            { title: "DJs", desc: "Keep the party going all night." },
-          ].map((c) => (
-            <Card key={c.title}>
-              <CardHeader>
-                <CardTitle>{c.title}</CardTitle>
-                <CardDescription>{c.desc}</CardDescription>
-              </CardHeader>
-              <CardContent />
-            </Card>
-          ))}
-        </section>
-      </main>
+    <div className="flex flex-col">
+      <section className="text-center py-20 bg-gradient-to-b from-purple-600 via-pink-500 to-red-500 text-white">
+        <h1 className="text-5xl font-extrabold mb-4">Discover Amazing Talent</h1>
+        <p className="max-w-xl mx-auto mb-6">
+          Your one-stop platform to book and manage performers for any event.
+        </p>
+        <Button asChild size="lg" variant="secondary" className="text-primary">
+          <Link href="/artists">Explore Artists</Link>
+        </Button>
+      </section>
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-8 -mt-8 pb-16">
+        {categories.map(({ title, desc, icon: Icon }) => (
+          <Card key={title} className="text-center">
+            <CardHeader>
+              <div className="flex justify-center mb-4">
+                <Icon className="size-8 text-primary" />
+              </div>
+              <CardTitle>{title}</CardTitle>
+              <CardDescription>{desc}</CardDescription>
+            </CardHeader>
+            <CardContent />
+          </Card>
+        ))}
+      </section>
     </div>
   );
 }

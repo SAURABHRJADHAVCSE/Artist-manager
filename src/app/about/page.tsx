@@ -3,12 +3,14 @@ import { Button } from "@/components/ui/button";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-8">
-      <h1 className="text-3xl font-bold">About</h1>
-      <p className="text-center max-w-md">Learn more about the Artist Manager platform.</p>
-      <Button asChild>
+    <section className="mx-auto max-w-2xl py-16 px-8 flex flex-col items-center gap-4 text-center">
+      <h1 className="text-3xl font-bold">About Artist Manager</h1>
+      <p className="text-muted-foreground">
+        Artist Manager helps event organizers connect with talented performers of all kinds.
+      </p>
+      <Button asChild variant="outline">
         <Link href="/">Back to Home</Link>
       </Button>
-    </div>
+    </section>
   );
 }
