@@ -1,4 +1,12 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
 
 export default function Home() {
   return (
@@ -18,12 +26,9 @@ export default function Home() {
           <p className="max-w-xl mx-auto mb-6">
             Manage your favorite performers and connect with artists for your next event.
           </p>
-          <Link
-            href="/artists"
-            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700"
-          >
-            Explore Artists
-          </Link>
+          <Button asChild>
+            <Link href="/artists">Explore Artists</Link>
+          </Button>
         </section>
 
         <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-8 pb-16">
@@ -33,13 +38,13 @@ export default function Home() {
             { title: "Speakers", desc: "Engaging voices for conferences." },
             { title: "DJs", desc: "Keep the party going all night." },
           ].map((c) => (
-            <div
-              key={c.title}
-              className="border rounded-lg p-6 shadow-sm flex flex-col items-start"
-            >
-              <h3 className="text-lg font-semibold mb-2">{c.title}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">{c.desc}</p>
-            </div>
+            <Card key={c.title}>
+              <CardHeader>
+                <CardTitle>{c.title}</CardTitle>
+                <CardDescription>{c.desc}</CardDescription>
+              </CardHeader>
+              <CardContent />
+            </Card>
           ))}
         </section>
       </main>
