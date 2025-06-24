@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeToggle from "@/components/theme-toggle";
 
 export default function SiteHeader() {
   return (
@@ -7,13 +8,14 @@ export default function SiteHeader() {
         <Link href="/" className="text-xl font-bold">
           Artist Manager
         </Link>
-        <nav className="flex gap-4 text-sm">
+        <nav className="flex items-center gap-4 text-sm">
           <Link href="/artists" className="hover:underline">
             Artists
           </Link>
           <Link href="/about" className="hover:underline">
             About
           </Link>
+          <ThemeToggle />
         </nav>
       </div>
     </header>

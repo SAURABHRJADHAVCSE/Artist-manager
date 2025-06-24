@@ -12,9 +12,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const themeScript = `(
+    function() {
+      try {
+        const t = localStorage.getItem('theme');
+        const system = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (t === 'dark' || (!t && system)) document.documentElement.classList.add('dark');
+      } catch (e) {}
+    })()`;
   return (
-    <html lang="en">
-      <body className="antialiased flex min-h-screen flex-col">
+    <html lang="en" suppressHydrationWarning>
+      <body className="bg-background text-foreground antialiased flex min-h-screen flex-col">
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <SiteHeader />
         <main className="flex-grow">{children}</main>
       </body>
